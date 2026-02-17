@@ -1,0 +1,14 @@
+{
+  "name": "sio_kasir",
+  "version": "1.0.0",
+  "description": "Backend Kasir",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
