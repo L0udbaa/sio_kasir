@@ -14,8 +14,22 @@ const options = {
         description: "Development server",
       },
     ],
+    components: {
+      schemas: {
+        Product: {
+          type: "object",
+          properties: {
+            id: { type: "integer" },
+            name: { type: "string" },
+            price: { type: "number" },
+            stock: { type: "integer" },
+            barcode: { type: "string" }
+          }
+        }
+      }
+    },
   },
-  apis: ["./src/routes/*.js"],
+  apis: ["./src/routes/*.js", "./src/controllers/*.js"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

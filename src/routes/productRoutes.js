@@ -25,14 +25,7 @@ router.get("/", controller.getProducts);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *               stock:
- *                 type: integer
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       201:
  *         description: Produk berhasil ditambahkan
@@ -56,14 +49,7 @@ router.post("/", controller.addProduct);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *               stock:
- *                 type: integer
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       200:
  *         description: Produk berhasil diupdate
