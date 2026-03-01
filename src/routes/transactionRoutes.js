@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/transactionController");
+const { verifyToken } = require("../middleware/authMiddleware");
 
 /**
  * @swagger
@@ -12,7 +13,7 @@ const controller = require("../controllers/transactionController");
  *       200:
  *         description: Daftar transaksi berhasil diambil
  */
-router.get("/", controller.getAllTransactions);
+router.get("/", verifyToken, controller.getAllTransactions);
 
 /**
  * @swagger
@@ -37,6 +38,6 @@ router.get("/", controller.getAllTransactions);
  *       201:
  *         description: Transaksi berhasil dibuat
  */
-router.post("/", controller.createTransaction);
+router.post("/", verifyToken, controller.createTransaction);
 
 module.exports = router;

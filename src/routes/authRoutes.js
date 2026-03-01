@@ -4,19 +4,36 @@
  *   post:
  *     summary: Register user
  *     tags: [Auth]
+ *     security: []          # public endpoint
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role_id:
+ *                 type: integer
+ *               store_id:
+ *                 type: integer
+ *             required:
+ *               - username
+ *               - email
+ *               - password
  *             example:
- *               name: Admin
+ *               username: AdminUser
  *               email: admin@mail.com
  *               password: 123456
- *               role: admin
+ *               role_id: 1
+ *               store_id: 1
  *     responses:
- *       200:
+ *       201:
  *         description: User created
  */
 const express = require('express');
@@ -32,12 +49,21 @@ router.post('/register', auth.register);
  *   post:
  *     summary: Login user
  *     tags: [Auth]
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - email
+ *               - password
  *             example:
  *               email: admin@mail.com
  *               password: 123456

@@ -8,10 +8,11 @@ exports.getAllProducts = async () => {
 
 // tambah produk
 exports.createProduct = async (data) => {
-  const { name, price, stock, barcode } = data;
+  const { name, price, stock, barcode, store_id } = data;
+  const sid = store_id || 1;
   const [result] = await db.query(
-    "INSERT INTO products (name, price, stock, barcode) VALUES (?, ?, ?, ?)",
-    [name, price, stock, barcode]
+    "INSERT INTO products (name, price, stock, barcode, store_id) VALUES (?, ?, ?, ?, ?)",
+    [name, price, stock, barcode, sid]
   );
   return result;
 };

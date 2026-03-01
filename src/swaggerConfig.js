@@ -1,4 +1,5 @@
 const swaggerJsdoc = require("swagger-jsdoc");
+const path = require("path");
 
 const options = {
   definition: {
@@ -27,9 +28,21 @@ const options = {
           }
         }
       }
+      ,
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      }
     },
+    security: [{ bearerAuth: [] }],
   },
-  apis: ["./src/routes/*.js", "./src/controllers/*.js"],
+  apis: [
+    path.join(__dirname, "routes/*.js"),
+    path.join(__dirname, "controllers/*.js"),
+  ],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

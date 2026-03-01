@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/productController");
+const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
 /**
  * @swagger
@@ -12,7 +13,7 @@ const controller = require("../controllers/productController");
  *       200:
  *         description: Daftar produk berhasil diambil
  */
-router.get("/", controller.getProducts);
+router.get("/", verifyToken, controller.getProducts);
 
 /**
  * @swagger
@@ -30,7 +31,7 @@ router.get("/", controller.getProducts);
  *       201:
  *         description: Produk berhasil ditambahkan
  */
-router.post("/", controller.addProduct);
+router.post("/", verifyToken, isAdmin, controller.addProduct);
 
 /**
  * @swagger
@@ -54,7 +55,7 @@ router.post("/", controller.addProduct);
  *       200:
  *         description: Produk berhasil diupdate
  */
-router.put("/:id", controller.updateProduct);
+router.put("/:id", verifyToken, isAdmin, controller.updateProduct);
 
 /**
  * @swagger
@@ -72,6 +73,6 @@ router.put("/:id", controller.updateProduct);
  *       200:
  *         description: Produk berhasil dihapus
  */
-router.delete("/:id", controller.deleteProduct);
+router.delete("/:id", verifyToken, isAdmin, controller.deleteProduct);
 
 module.exports = router;
